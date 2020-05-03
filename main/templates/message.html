@@ -1,0 +1,4 @@
+<div class="message" id="m{{ message['id'] }}">
+    <!-- link the message to the client message input/textarea -->
+    {% module linkify(message["body"]) %}
+</div>
