@@ -12,12 +12,14 @@ class mainhandler(tornado.web.RequestHandler):
     def get(self):
         # create the form for clients to input their usernames
         self.write(
-            '<html>'
-            '<body>'
-            '<form action="/" method="POST">'
-            '<input type="text" name="username">'
-            '<input type="submit" value="submit">'
+            '<html style="padding:0">'
+            '<body style="margin:0;padding:0;width:100%;text-align:center;">'
+            '<form style="padding:0;width:auto;padding:40px" action="/" method="POST">'
+            '<h1 style="font-size:32px">Please enter a username to join</h1>'
+            '<input style="margin-top:30px;margin-bottom:30px;padding-left:10px;height: 50px;line-height: 45px;width:300px"type="text" placeholder="username"name="username">'
+            '<br><input style="font-size:16px;width:300px;height:45px;background-color: black;color: white;border: none;" type="submit" value="submit">'
             '</form>'
+            '</body>'
             '</html>'
             )
     # when users submit their usernames get it
@@ -27,7 +29,7 @@ class mainhandler(tornado.web.RequestHandler):
 
         if current_username in global_users:
             # if user exists display user exists and a button for going back
-            self.write('<h2>user exists<h2><a href="%s"><button>try another</button></a>' % 
+            self.write('<h2>user exists<h2><a href="%s"><button style="width:200px;height:40px;background-color: #fd3333;color: white;border: none;">try another</button></a>' % 
                 self.reverse_url("home"))
         else:
             #  add the user to the user list
@@ -36,7 +38,7 @@ class mainhandler(tornado.web.RequestHandler):
             # get the position of the username in the array
             user_position=global_users.index(current_username)
             # redirect the user to  ../user/<position of user in the array>
-            self.write('<h2>you have been verified</h2><a href="%s"><button>go to chat</button></a>' %
+            self.write('<h2>you have been verified</h2><a href="%s"><button style="width:200px;height:40px;background-color: rgb(0, 161, 5);color: white;border: none;">go to chat</button></a>' %
                    self.reverse_url("user", user_position))
             
 class userhandler(tornado.web.RequestHandler):
